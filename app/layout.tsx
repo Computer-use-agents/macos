@@ -16,10 +16,6 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          rel="stylesheet"
-          href={process.env.NODE_ENV === 'production' ? '/CUA-Trace-Viewer/_next/static/css/app/layout.css' : '/_next/static/css/app/layout.css'}
-        />
       </head>
       <body>{children}</body>
     </html>

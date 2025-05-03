@@ -13,7 +13,7 @@ import trace6Data from '../src/data/trace6.json';
 import trace7Data from '../src/data/trace7.json';
 
 // 获取basePath
-const basePath = process.env.NODE_ENV === 'production' ? '/CUA-Trace-Viewer' : '';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 // 修正图片和视频路径
 const fixAssetPaths = (data: TraceData): TraceData => {

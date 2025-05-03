@@ -23,8 +23,8 @@ A web-based visualization tool for Computer Use Agent traces, displaying the age
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Computer-use-agents/CUA-Trace-Viewer.git
-cd CUA-Trace-Viewer
+git clone https://github.com/Computer-use-agents/macos.git
+cd macos
 ```
 
 ### 2. Install Dependencies

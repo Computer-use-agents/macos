@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/CUA-Trace-Viewer' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/CUA-Trace-Viewer/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/macos' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/macos/' : '',
   images: {
     remotePatterns: [],
     unoptimized: true,
@@ -15,7 +15,7 @@ const nextConfig = {
         loader: 'file-loader',
         options: {
           publicPath: process.env.NODE_ENV === 'production' 
-            ? '/CUA-Trace-Viewer/_next/static/media/' 
+            ? '/macos/_next/static/media/' 
             : '/_next/static/media/',
           outputPath: 'static/media/',
           name: '[name].[hash].[ext]',
@@ -26,7 +26,7 @@ const nextConfig = {
     return config;
   },
   env: {
-    NEXT_PUBLIC_BASE_PATH: process.env.NODE_ENV === 'production' ? '/CUA-Trace-Viewer' : '',
+    NEXT_PUBLIC_BASE_PATH: process.env.NODE_ENV === 'production' ? '/macos' : '',
   },
   trailingSlash: true,
 };
