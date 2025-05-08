@@ -25,30 +25,4 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-/* 3D Perspective Styles */
-.perspective-1000 {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.transition-3d {
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-}
-
-/* Carousel Animation */
-@keyframes carousel-slide-in {
-  from {
-    transform: translateX(100%) rotateY(30deg);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0) rotateY(0deg);
-    opacity: 1;
-  }
-}
-
-.carousel-slide-in {
-  animation: carousel-slide-in 0.5s ease-out forwards;
 } 

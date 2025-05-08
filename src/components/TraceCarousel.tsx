@@ -16,67 +16,19 @@ export default function TraceCarousel({
   autoplayInterval = 10000
 }: TraceCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [rotation, setRotation] = useState(0);
-  const [tiltY, setTiltY] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoplay);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
   const autoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Generate IDs if not provided
   const viewerIds = ids.length === traceDatas.length 
     ? ids 
     : traceDatas.map((_, index) => `viewer-${index}`);
-  
-  // Handle mouse movement to control rotation
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || isTransitioning) return;
-    setIsUserInteracting(true);
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    // Calculate angle based on mouse position relative to center
-    const angleX = ((e.clientX - centerX) / (rect.width / 2)) * 8; // Max 8 degrees rotation
-    const angleY = ((e.clientY - centerY) / (rect.height / 2)) * 5; // Max 5 degrees tilt
-    
-    setRotation(angleX);
-    setTiltY(angleY);
-
-    // Reset user interaction state after 3 seconds of inactivity
-    resetUserInteractionTimeout();
-  };
-
-  // Reset user interaction after delay
-  const resetUserInteractionTimeout = () => {
-    if (autoplayTimerRef.current) {
-      clearTimeout(autoplayTimerRef.current);
-    }
-    
-    autoplayTimerRef.current = setTimeout(() => {
-      setIsUserInteracting(false);
-    }, 3000);
-  };
-
-  // Reset rotation when mouse leaves
-  const handleMouseLeave = () => {
-    setRotation(0);
-    setTiltY(0);
-    setIsUserInteracting(false);
-    
-    if (autoplayTimerRef.current) {
-      clearTimeout(autoplayTimerRef.current);
-    }
-  };
 
   // Navigate to previous trace
   const prevTrace = () => {
     if (isTransitioning) return;
     
-    setIsUserInteracting(true);
-    resetUserInteractionTimeout();
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveIndex((prevIndex) => 
@@ -90,8 +42,6 @@ export default function TraceCarousel({
   const nextTrace = () => {
     if (isTransitioning) return;
     
-    setIsUserInteracting(true);
-    resetUserInteractionTimeout();
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveIndex((prevIndex) => 
@@ -105,8 +55,6 @@ export default function TraceCarousel({
   const goToTrace = (index: number) => {
     if (isTransitioning || index === activeIndex) return;
     
-    setIsUserInteracting(true);
-    resetUserInteractionTimeout();
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveIndex(index);
@@ -141,7 +89,7 @@ export default function TraceCarousel({
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     
-    if (isAutoPlaying && !isUserInteracting && traceDatas.length > 1) {
+    if (isAutoPlaying && traceDatas.length > 1) {
       interval = setInterval(() => {
         nextTrace();
       }, autoplayInterval);
@@ -150,7 +98,7 @@ export default function TraceCarousel({
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isAutoPlaying, isUserInteracting, activeIndex, traceDatas.length]);
+  }, [isAutoPlaying, activeIndex, traceDatas.length]);
 
   // Clean up autoplay timer on unmount
   useEffect(() => {
@@ -163,63 +111,20 @@ export default function TraceCarousel({
 
   return (
     <div className="relative pb-16">
-      <div 
-        ref={containerRef}
-        className="relative w-full h-[600px] overflow-hidden rounded-xl shadow-2xl"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Carousel container with 3D effect */}
-        <div className="w-full h-full relative perspective-1000">
+      <div className="relative w-full h-[600px] overflow-hidden rounded-xl shadow-lg">
+        {/* Carousel container */}
+        <div className="w-full h-full relative">
           {traceDatas.map((data, index) => {
-            // Calculate styles based on position relative to active index
             const isActive = index === activeIndex;
-            const offset = index - activeIndex;
-            
-            // Handle wraparound for better visual effect
-            const wrappedOffset = offset > traceDatas.length / 2 
-              ? offset - traceDatas.length 
-              : offset < -traceDatas.length / 2 
-                ? offset + traceDatas.length 
-                : offset;
-            
-            // Calculate z-index to ensure proper stacking
-            const zIndex = isActive ? traceDatas.length : traceDatas.length - Math.abs(wrappedOffset);
-            
-            // Calculate transform for 3D effect
-            // Active element - rotates with mouse movement
-            // Inactive elements - positioned to sides based on their relation to active
-            let transform = isActive 
-              ? `rotateY(${rotation}deg) rotateX(${-tiltY}deg) translateZ(0)`
-              : `rotateY(${rotation + (wrappedOffset * 25)}deg) translateZ(${-250}px) translateX(${wrappedOffset * 200}px)`;
-            
-            // Apply additional scaling for distance effect
-            const scale = isActive ? 1 : 1 - Math.min(0.3, Math.abs(wrappedOffset) * 0.15);
-            transform += ` scale(${scale})`;
-            
-            // Calculate opacity based on distance
-            const opacity = isActive ? 1 : Math.max(0.2, 0.8 - Math.abs(wrappedOffset) * 0.2);
-            
-            // Only render traces that would be visible (performance optimization)
-            const isVisible = Math.abs(wrappedOffset) <= 2;
-            
-            if (!isVisible) return null;
             
             return (
               <div
                 key={viewerIds[index]}
-                className={`absolute top-0 left-0 w-full h-full transition-3d ${
-                  isTransitioning ? 'duration-300' : 'duration-500'
+                className={`absolute top-0 left-0 w-full h-full transition-opacity duration-300 ${
+                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
-                style={{
-                  zIndex,
-                  transform,
-                  opacity,
-                  filter: isActive ? 'none' : `blur(${Math.min(4, Math.abs(wrappedOffset) * 2)}px)`,
-                  pointerEvents: isActive ? 'auto' : 'none',
-                }}
               >
-                <div className={`w-full h-full ${isActive && 'shadow-2xl'}`}>
+                <div className="w-full h-full">
                   <TraceViewer data={data} id={viewerIds[index]} />
                 </div>
               </div>
@@ -228,7 +133,7 @@ export default function TraceCarousel({
         </div>
 
         {/* Trace information and controls */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-50">
+        <div className="absolute -top-12 left-4 right-4 flex justify-between items-center z-50">
           <div className="bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
             <span>Trace {activeIndex + 1} of {traceDatas.length}</span>
             <button 
@@ -250,14 +155,10 @@ export default function TraceCarousel({
               )}
             </button>
           </div>
-          {/* <div className="bg-blue-600/80 text-white px-4 py-2 rounded-lg text-sm flex items-center">
-            <div className="h-2 w-2 rounded-full bg-white mr-2 animate-pulse"></div>
-            <span>Move mouse to rotate view</span>
-          </div> */}
         </div>
       </div>
 
-      {/* Navigation controls - now outside the main carousel container */}
+      {/* Navigation controls */}
       <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-3 z-50">
         <button
           onClick={prevTrace}
