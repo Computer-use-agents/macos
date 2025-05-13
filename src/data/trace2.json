@@ -1,4 +1,5 @@
 {
+  "task": "I think I have something scheduled for this Friday night, but I am not sure. I think it might be a movie night. If that's the case, could you please look up the latest movies and make a recommendation list for me? Save the recommendation list in text form.",
   "items": [
     {
       "timestamp": "2024-03-20T10:00:00Z",
@@ -14,8 +15,8 @@
     {
       "timestamp": "2024-03-20T10:02:30Z",
       "screenshot": "/screenshots/task2-image0216.jpg",
-      "thought": "Agent uses browser app to gather more information about latest movies.",
-      "action": "Enough information is gathered, the agent moves on to create the text file for movie recommendation.",
+      "thought": "Search for details for information about latest movies.",
+      "action": "Extract details from search results on the Google page. ",
       "video": "/videos/shichenrui-task2.mp4",
       "timeRange": {
         "start": 3,
@@ -25,7 +26,7 @@
     {
       "timestamp": "2024-03-20T10:05:15Z",
       "screenshot": "/screenshots/task2-image0304.jpg",
-      "thought": "Agent writes the recommendation in the text file.",
+      "thought": " Open the text file to insert the recommendation.",
       "action": "Task completed.",
       "video": "/videos/shichenrui-task2.mp4",
       "timeRange": {

@@ -11,5 +11,6 @@ export interface TraceItem {
 }
 
 export interface TraceData {
+  task?: string;
   items: TraceItem[];
 } 

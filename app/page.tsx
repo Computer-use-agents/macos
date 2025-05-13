@@ -1,16 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TraceViewer from '../src/components/TraceViewer';
 import TraceCarousel from '../src/components/TraceCarousel';
 import { TraceData } from '../src/types/trace';
-import trace1Data from '../src/data/trace1.json';
-import trace2Data from '../src/data/trace2.json';
-import trace3Data from '../src/data/trace3.json';
-import trace4Data from '../src/data/trace4.json';
-import trace5Data from '../src/data/trace5.json';
-import trace6Data from '../src/data/trace6.json';
-import trace7Data from '../src/data/trace7.json';
 
 // 获取basePath
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -27,30 +20,89 @@ const fixAssetPaths = (data: TraceData): TraceData => {
   };
 };
 
-// 应用路径修正
-const processedTrace1 = fixAssetPaths(trace1Data as TraceData);
-const processedTrace2 = fixAssetPaths(trace2Data as TraceData);
-const processedTrace3 = fixAssetPaths(trace3Data as TraceData);
-const processedTrace4 = fixAssetPaths(trace4Data as TraceData);
-const processedTrace5 = fixAssetPaths(trace5Data as TraceData);
-const processedTrace6 = fixAssetPaths(trace6Data as TraceData);
-const processedTrace7 = fixAssetPaths(trace7Data as TraceData);
-// 将所有轨迹数据收集到一个数组中
-const allTraceData = [
-  processedTrace1, 
-  processedTrace2, 
-  processedTrace3, 
-  processedTrace4, 
-  processedTrace5, 
-  processedTrace6,
-  processedTrace7
-];
+// 生成traceIds
+const generateTraceIds = (count: number): string[] => {
+  return Array.from({ length: count }, (_, i) => `viewer${i + 1}`);
+};
 
-// 为每个轨迹生成唯一ID
-const traceIds = ['viewer1', 'viewer2', 'viewer3', 'viewer4', 'viewer5', 'viewer6', 'viewer7' ];
+// TaskDisplay component to show current task
+const TaskDisplay = ({ traceData, activeIndex = 0, darkMode = true }: { traceData: TraceData | null, activeIndex?: number, darkMode?: boolean }) => {
+  if (!traceData) {
+    return null;
+  }
+
+  // 适配夜间/白天模式的样式
+  const bgClass = darkMode
+    ? 'bg-gray-900/90 border-blue-500/40 shadow-lg'
+    : 'bg-white border-blue-500/30 shadow-md';
+  const textClass = darkMode ? 'text-gray-100' : 'text-gray-900';
+  const taskLabelClass = darkMode
+    ? 'text-blue-300 font-bold tracking-wider mr-2'
+    : 'text-blue-700 font-bold tracking-wider mr-2';
+  const taskContentClass = darkMode
+    ? 'font-sans font-medium text-base md:text-lg leading-relaxed break-words text-gray-100'
+    : 'font-sans font-medium text-base md:text-lg leading-relaxed break-words text-gray-900';
+
+  return (
+    <div
+      className={`w-full rounded-xl mb-6 border px-6 py-4 flex items-start ${bgClass} ${textClass}`}
+      style={{ fontFamily: `-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif` }}
+    >
+      <span className={taskLabelClass} style={{ fontFamily: 'Segoe UI,Arial,sans-serif' }}>TASK:</span>
+      <span className={taskContentClass}>{traceData.task || 'No task information available'}</span>
+    </div>
+  );
+};
 
 export default function Home() {
+  const [allTraceData, setAllTraceData] = useState<TraceData[]>([]);
+  const [traceIds, setTraceIds] = useState<string[]>([]);
   const [darkMode, setDarkMode] = useState(true);
+  const [activeTraceIndex, setActiveTraceIndex] = useState(0);
+  
+  useEffect(() => {
+    // 动态加载trace文件
+    async function loadTraceFiles() {
+      try {
+        // 尝试加载所有可能的trace文件（从1到20）
+        const tracePromises = [];
+        
+        // 定义一个异步函数来尝试导入单个trace文件
+        const tryImportTrace = async (index: number) => {
+          try {
+            const module = await import(`../src/data/trace${index}.json`);
+            return { index, data: module.default };
+          } catch (e) {
+            return null;
+          }
+        };
+        
+        // 并行尝试导入所有可能的trace文件
+        for (let i = 1; i <= 20; i++) {
+          tracePromises.push(tryImportTrace(i));
+        }
+        
+        // 等待所有导入尝试完成
+        const results = await Promise.all(tracePromises);
+        
+        // 过滤出成功导入的trace文件，并按索引排序
+        const successfulImports = results
+          .filter(result => result !== null)
+          .sort((a, b) => a!.index - b!.index)
+          .map(result => fixAssetPaths(result!.data as TraceData));
+        
+        console.log(`Successfully loaded ${successfulImports.length} trace files`);
+        
+        // 更新状态
+        setAllTraceData(successfulImports);
+        setTraceIds(generateTraceIds(successfulImports.length));
+      } catch (error) {
+        console.error('Error loading trace files:', error);
+      }
+    }
+    
+    loadTraceFiles();
+  }, []);
   
   const toggleTheme = () => {
     setDarkMode(!darkMode);
@@ -565,12 +617,19 @@ export default function Home() {
             Agent Execution Traces
           </h2>
 
+          {/* Task Display Component in the red box area */}
+          <TaskDisplay 
+            traceData={allTraceData.length > 0 ? allTraceData[activeTraceIndex] : null} 
+            darkMode={darkMode}
+          />
+
           <div className="mb-4">
             <TraceCarousel 
               traceDatas={allTraceData} 
               ids={traceIds} 
               autoplay={true}
               autoplayInterval={8000}
+              onActiveIndexChange={setActiveTraceIndex}
             />
           </div>
           

@@ -7,13 +7,15 @@ interface TraceCarouselProps {
   ids?: string[];
   autoplay?: boolean;
   autoplayInterval?: number;
+  onActiveIndexChange?: (index: number) => void;
 }
 
 export default function TraceCarousel({ 
   traceDatas, 
   ids = [],
   autoplay = true,
-  autoplayInterval = 10000
+  autoplayInterval = 10000,
+  onActiveIndexChange
 }: TraceCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -24,6 +26,13 @@ export default function TraceCarousel({
   const viewerIds = ids.length === traceDatas.length 
     ? ids 
     : traceDatas.map((_, index) => `viewer-${index}`);
+
+  // Notify parent when activeIndex changes
+  useEffect(() => {
+    if (onActiveIndexChange) {
+      onActiveIndexChange(activeIndex);
+    }
+  }, [activeIndex, onActiveIndexChange]);
 
   // Navigate to previous trace
   const prevTrace = () => {
@@ -98,7 +107,7 @@ export default function TraceCarousel({
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isAutoPlaying, activeIndex, traceDatas.length]);
+  }, [isAutoPlaying, activeIndex, traceDatas.length, autoplayInterval]);
 
   // Clean up autoplay timer on unmount
   useEffect(() => {
