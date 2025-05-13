@@ -100,7 +100,13 @@ export default function TraceCarousel({
     
     if (isAutoPlaying && traceDatas.length > 1) {
       interval = setInterval(() => {
-        nextTrace();
+        // Check if any video is currently playing before switching
+        const videoElements = document.querySelectorAll('video');
+        const isAnyVideoPlaying = Array.from(videoElements).some(video => !video.paused);
+        
+        if (!isAnyVideoPlaying) {
+          nextTrace();
+        }
       }, autoplayInterval);
     }
     
@@ -109,6 +115,7 @@ export default function TraceCarousel({
     };
   }, [isAutoPlaying, activeIndex, traceDatas.length, autoplayInterval]);
 
+  // Remove the video play/pause event listeners since we don't need them anymore
   // Clean up autoplay timer on unmount
   useEffect(() => {
     return () => {
