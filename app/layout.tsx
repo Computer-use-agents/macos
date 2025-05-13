@@ -4,6 +4,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Computer Use Agent - macOS Agent',
   description: 'Intelligent Desktop Automation',
+  icons: {
+    icon: '/icon/image.png',
+  },
 }
 
 export default function RootLayout({
