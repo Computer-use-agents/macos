@@ -14,8 +14,12 @@ const fixAssetPaths = (data: TraceData): TraceData => {
     ...data,
     items: data.items.map(item => ({
       ...item,
-      screenshot: `${basePath}${item.screenshot.startsWith('/') ? '' : '/'}${item.screenshot}`,
-      video: `${basePath}${item.video.startsWith('/') ? '' : '/'}${item.video}`
+      screenshot: item.screenshot.startsWith('http')
+        ? item.screenshot
+        : `${basePath}${item.screenshot.startsWith('/') ? '' : '/'}${item.screenshot}`,
+      video: item.video.startsWith('http')
+        ? item.video
+        : `${basePath}${item.video.startsWith('/') ? '' : '/'}${item.video}`
     }))
   };
 };

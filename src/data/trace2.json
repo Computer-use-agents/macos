@@ -6,7 +6,7 @@
       "screenshot": "/screenshots/task2-image0037.jpg",
       "thought": "The agent opens the calendar to check any schedule for this friday.",
       "action": "The agent finds there's indeed a movie night schedule.",
-      "video": "/videos/shichenrui-task2.mp4",
+      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task2.mp4",
       "timeRange": {
         "start": 0,
         "end": 3
@@ -17,7 +17,7 @@
       "screenshot": "/screenshots/task2-image0216.jpg",
       "thought": "Search for details for information about latest movies.",
       "action": "Extract details from search results on the Google page. ",
-      "video": "/videos/shichenrui-task2.mp4",
+      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task2.mp4",
       "timeRange": {
         "start": 3,
         "end": 8
@@ -28,7 +28,7 @@
       "screenshot": "/screenshots/task2-image0304.jpg",
       "thought": " Open the text file to insert the recommendation.",
       "action": "Task completed.",
-      "video": "/videos/shichenrui-task2.mp4",
+      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task2.mp4",
       "timeRange": {
         "start": 8,
         "end": 10
