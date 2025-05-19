@@ -6,7 +6,7 @@
       "screenshot": "/screenshots/task1-image0303.jpg",
       "thought": "Search for 'Grammy Award Best Album of the Year 2025 winner.",
       "action": "Open Google in the current tab to begin the search for 'Grammy Award Best Album of the Year 2025 winner'",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task1.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/shichenrui-task1-update.mp4",
       "timeRange": {
         "start": 0,
         "end": 18
@@ -17,7 +17,7 @@
       "screenshot": "/screenshots/task1-image0860.jpg",
       "thought": "Search for details about Beyoncé's album 'Cowboy Carter'",
       "action": "Extract details from search results on the Google page regarding Beyoncé's album 'Cowboy Carter'. Extract the concert dates for Beyoncé from the search results displayed. ",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task1.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/shichenrui-task1-update.mp4",
       "timeRange": {
         "start": 18,
         "end": 29
@@ -28,7 +28,7 @@
       "screenshot": "/screenshots/task1-image1022.jpg",
       "thought": "Open the document to insert the article content.",
       "action": "Agent writes the article to the word document.",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task1.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/shichenrui-task1-update.mp4",
       "timeRange": {
         "start": 29,
         "end": 35
@@ -39,7 +39,7 @@
       "screenshot": "/screenshots/task1-image1358.jpg",
       "thought": "Create a new calendar event for Beyoncé's concert.",
       "action": "Task completed.",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/shichenrui-task1.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/shichenrui-task1-update.mp4",
       "timeRange": {
         "start": 35,
         "end": 45
