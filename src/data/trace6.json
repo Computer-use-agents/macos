@@ -6,7 +6,7 @@
       "screenshot": "/screenshots/1.png",
       "thought": "Need to search for the date and time of first playoff game between Clippers and Nuggets in the 2025 season. Start by searching on Google.",
       "action": "Search for 'Clippers Nuggets first playoff game 2025 date and time' in Google",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos%2Fliuyang1_clear.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/liuyang1_clear.mp4",
       "timeRange": {
         "start": 0,
         "end": 2
@@ -17,7 +17,7 @@
       "screenshot": "/screenshots/2.png",
       "thought": "Through analyzing screen elements and text content, I determine that the first playoff game between the Clippers and Nuggets in the 2025 NBA season is scheduled for April 19 at 3:30 PM Eastern Time.",
       "action": "extract content",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos%2Fliuyang1_clear.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/liuyang1_clear.mp4",
       "timeRange": {
         "start": 2,
         "end": 10
@@ -28,7 +28,7 @@
       "screenshot": "/screenshots/3.png",
       "thought": "Current task is to add a new event titled 'Clippers vs Nuggets Playoff Game 1' on April 19, 2025, at 3:30 PM ET.",
       "action": "click the element",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos%2Fliuyang1_clear.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/liuyang1_clear.mp4",
       "timeRange": {
         "start": 10,
         "end": 12
@@ -39,7 +39,7 @@
       "screenshot": "/screenshots/4.png",
       "thought": "I have successfully reached the date April 19, 2025. The next step is to create the event.",
       "action": "click on the button",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos%2Fliuyang1_clear.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/liuyang1_clear.mp4",
       "timeRange": {
         "start": 12,
         "end": 16

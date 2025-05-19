@@ -6,7 +6,7 @@
       "screenshot": "/screenshots/wechat_word_finder/0.png",
       "thought": "Agent determines that the user intends to communicate with '尚子睿' via WeChat. The user navigates through the chat list to locate the conversation and initiate interaction.",
       "action": "open WeChat and locate the chat with 尚子睿",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/wechat_word_finder.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/wechat_word_finder.mp4",
       "timeRange": {
         "start": 0,
         "end": 5
@@ -17,7 +17,7 @@
       "screenshot": "/screenshots/wechat_word_finder/1.png",
       "thought": "Agent observes that the user is reading recent messages from '尚子睿' which contain specific instructions. These instructions include file editing tasks that need to be followed precisely.",
       "action": "read the message from 尚子睿 to understand the file modification request",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/wechat_word_finder.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/wechat_word_finder.mp4",
       "timeRange": {
         "start": 5,
         "end": 7
@@ -28,7 +28,7 @@
       "screenshot": "/screenshots/wechat_word_finder/2.png",
       "thought": "Agent observes the user has read a detailed instruction message regarding document editing. Based on this, I infer that the next step is to locate and open the specified file to apply the requested formatting.",
       "action": "open article.docx and apply the required font formatting to the first 20 characters",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/wechat_word_finder.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/wechat_word_finder.mp4",
       "timeRange": {
         "start": 7,
         "end": 11
@@ -39,7 +39,7 @@
       "screenshot": "/screenshots/wechat_word_finder/3.png",
       "thought": "Agent sees that the user has finished editing the document in Word. To prepare for sending it, the next logical step is to find the file in Finder and copy it.",
       "action": "copy the modified article.docx file in Finder",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/wechat_word_finder.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/wechat_word_finder.mp4",
       "timeRange": {
         "start": 11,
         "end": 14
@@ -50,7 +50,7 @@
       "screenshot": "/screenshots/wechat_word_finder/4.png",
       "thought": "Agent observes that the user has copied the edited file. To deliver it to 尚子睿 as requested, the user now needs to return to the WeChat conversation and paste the file into the chat.",
       "action": "paste and send the modified file to 尚子睿 via WeChat",
-      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/wechat_word_finder.mp4",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/wechat_word_finder.mp4",
       "timeRange": {
         "start": 14,
         "end": 26
