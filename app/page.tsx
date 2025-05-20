@@ -61,7 +61,12 @@ const TaskDisplay = ({ traceData, activeIndex = 0, darkMode = true }: { traceDat
 export default function Home() {
   const [allTraceData, setAllTraceData] = useState<TraceData[]>([]);
   const [traceIds, setTraceIds] = useState<string[]>([]);
-  const [darkMode, setDarkMode] = useState(true);
+  // 根据本地时间自动设置主题，7:00-19:00为日间模式，其余为夜间模式
+  const getDefaultDarkMode = () => {
+    const hour = new Date().getHours();
+    return hour < 7 || hour >= 19;
+  };
+  const [darkMode, setDarkMode] = useState(getDefaultDarkMode());
   const [activeTraceIndex, setActiveTraceIndex] = useState(0);
   
   useEffect(() => {
@@ -544,20 +549,20 @@ export default function Home() {
                   
                   {/* Connectors */}
                   {/* Human to CUA */}
-                  <path d="M130 275 H180" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" />
+                  <path d="M130 275 H180" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" fill="none" />
                   
                   {/* CUA to OS Agents */}
-                  <path d="M320 255 Q335 255 350 130 L385 130" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" />
-                  <path d="M320 275 Q335 275 350 275 L385 275" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" strokeDasharray="4,4" />
-                  <path d="M320 295 Q335 295 350 420 L385 420" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" strokeDasharray="4,4" />
+                  <path d="M320 255 Q335 255 350 130 L385 130" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" fill="none" />
+                  <path d="M320 275 Q335 275 350 275 L385 275" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" strokeDasharray="4,4" fill="none" />
+                  <path d="M320 295 Q335 295 350 420 L385 420" stroke={darkMode ? "#94a3b8" : "#60a5fa"} strokeWidth="2" strokeDasharray="4,4" fill="none" />
                   
                   {/* MacAgent to App Categories */}
-                  <path d="M515 110 C540 110 560 92 585 92" stroke={darkMode ? "#818cf8" : "#6366f1"} strokeWidth="1.5" />
-                  <path d="M515 130 C540 130 560 187 585 187" stroke={darkMode ? "#818cf8" : "#6366f1"} strokeWidth="1.5" />
-                  <path d="M515 150 C540 150 560 295 585 295" stroke={darkMode ? "#818cf8" : "#6366f1"} strokeWidth="1.5" />
+                  <path d="M515 110 C540 110 560 92 585 92" stroke={darkMode ? "#818cf8" : "#a5b4fc"} strokeWidth="1.5" fill="none" />
+                  <path d="M515 130 C540 130 560 187 585 187" stroke={darkMode ? "#818cf8" : "#a5b4fc"} strokeWidth="1.5" fill="none" />
+                  <path d="M515 150 C540 150 560 295 585 295" stroke={darkMode ? "#818cf8" : "#a5b4fc"} strokeWidth="1.5" fill="none" />
                   
                   {/* iOSAgent to App Categories */}
-                  <path d="M515 420 C540 420 560 420 585 420" stroke={darkMode ? "#818cf8" : "#6366f1"} strokeWidth="1.5" strokeDasharray="4,4" />
+                  <path d="M515 420 C540 420 560 420 585 420" stroke={darkMode ? "#818cf8" : "#a5b4fc"} strokeWidth="1.5" strokeDasharray="4,4" fill="none" />
                   
                   {/* Level Labels */}
                   <text x="250" y="520" textAnchor="middle" 

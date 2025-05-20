@@ -10,7 +10,8 @@
       "timeRange": {
         "start": 0,
         "end": 3
-      }
+      },
+      "agent_name": "Calendar Agent"
     },
     {
       "timestamp": "2024-03-20T10:02:30Z",
