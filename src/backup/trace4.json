@@ -1,48 +1,38 @@
 {
+  "task": "Search for the weather for the upcoming weekend in Beijing and add a schedule to travel on the first sunny weekend.",
   "items": [
     {
-      "timestamp": "2024-03-20T10:00:00Z",
-      "screenshot": "/screenshots/wechat_calendar/0.png",
-      "thought": "Agent identifies that the user is trying to locate a conversation with a specific contact named '尚子睿'. By analyzing the context, I infer that the user intends to open WeChat and search through recent chats or use the search function to find the conversation.",
-      "action": "open WeChat",
-      "video": "/videos/wechat_calendar.mp4",
+      "timestamp": "2024-04-19T10:00:00Z",
+      "screenshot": "/screenshots/browser_calendar2/0.png",
+      "thought": "Agent observes that the user is searching for the weather forecast for the upcoming weekend in Beijing. The user is likely interested in planning an outdoor activity for the weekend.",
+      "action": "search for Beijing weather forecast for April 19 and 20",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/browser_calendar2.mp4",
       "timeRange": {
         "start": 0,
-        "end": 7
+        "end": 5
       }
     },
     {
-      "timestamp": "2024-03-20T10:02:30Z",
-      "screenshot": "/screenshots/wechat_calendar/1.png",
-      "thought": "Agent observes that the user's WeChat interface displays the recent conversation list, and a chat with '尚子睿' is clearly visible. I infer that the user intends to access this chat to review previous messages.",
-      "action": "click on the chat with 尚子睿",
-      "video": "/videos/wechat_calendar.mp4",
+      "timestamp": "2024-04-19T11:00:00Z",
+      "screenshot": "/screenshots/browser_calendar2/1.png",
+      "thought": "Agent sees that the forecast for April 19 and 20 shows cloudy weather, which may not be ideal for the user's intended outdoor plans. The user is likely considering searching for better weather next weekend.",
+      "action": "search for Beijing weather forecast for April 25 to April 28",
+      "video": "https://macos-agents.oss-cn-beijing.aliyuncs.com/browser_calendar2.mp4",
       "timeRange": {
-        "start": 7,
-        "end": 11
+        "start": 5,
+        "end": 10
       }
     },
     {
-      "timestamp": "2024-03-20T10:05:15Z",
-      "screenshot": "/screenshots/wechat_calendar/2.png",
-      "thought": "Agent sees that the user is browsing the chat with '尚子睿'. By scanning the recent message content, I detect references to a Tencent Meeting, which appears to include relevant details such as meeting time and link. The user is likely identifying this information to use it for scheduling.",
-      "action": "read the recent messages to extract Tencent Meeting details",
-      "video": "/videos/wechat_calendar.mp4",
+      "timestamp": "2024-04-19T12:00:00Z",
+      "screenshot": "/screenshots/browser_calendar2/2.png",
+      "thought": "Agent observes that the forecast for April 27 is sunny, which makes it ideal for outdoor activities. Based on this observation, the user seems to have decided to schedule a trip for this date.",
+      "action": "open calendar and add a travel schedule on April 27 for 'Trip to Beijing'",
+      "video": "https://cua-video-1343655088.cos.ap-hongkong.myqcloud.com/videos/browser_calendar2.mp4",
       "timeRange": {
-        "start": 11,
-        "end": 16
-      }
-    },
-    {
-      "timestamp": "2024-03-20T10:05:15Z",
-      "screenshot": "/screenshots/wechat_calendar/3.png",
-      "thought": "Agent recognizes that the user has obtained the Tencent Meeting start time. The goal now is to create a new event in the calendar at the specified time to ensure the meeting is properly scheduled.",
-      "action": "add the Tencent Meeting start time to the calendar",
-      "video": "/videos/wechat_calendar.mp4",
-      "timeRange": {
-        "start": 16,
-        "end": 23
+        "start": 10,
+        "end": 15
       }
     }
   ]
-} 
+}

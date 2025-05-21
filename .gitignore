@@ -39,6 +39,8 @@ next-env.d.ts
 *.swp
 *.swo
 
+public/videos
+src/backup
 # Media files (since they might be large and project-specific)
 # /public/screenshots/*
 # /public/videos/*

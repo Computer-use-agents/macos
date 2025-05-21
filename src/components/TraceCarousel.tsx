@@ -127,7 +127,7 @@ export default function TraceCarousel({
 
   return (
     <div className="relative pb-16">
-      <div className="relative w-full h-[600px] overflow-hidden rounded-xl shadow-lg">
+      <div className="relative w-full h-[800px] overflow-hidden rounded-3xl border-4 border-blue-200 p-6 shadow-2xl bg-white">
         {/* Carousel container */}
         <div className="w-full h-full relative">
           {traceDatas.map((data, index) => {
